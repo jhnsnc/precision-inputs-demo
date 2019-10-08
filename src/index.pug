@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+  .fl-envelope
+    .fl-envelope__visualizer
+      svg.envelope-visualizer(viewBox='0 0 300 100',preserveAspectRatio='xMinYMid slice')
+        path.envelope-shape(d='M0,100L0,0')
+        circle.delay(cx=0,cy=100,r=6)
+        circle.attack(cx=0,cy=0,r=6)
+        circle.hold(cx=0,cy=0,r=6)
+        circle.decay(cx=0,cy=100,r=6)
+        circle.release(cx=0,cy=100,r=6)
+    .fl-envelope__controls
+      - var envelopeKnobs = ['delay','att','hold','dec','sus','rel'];
+      - for (var i=0; i<envelopeKnobs.length; i++)
+        .fl-envelope__control
+          .fl-demo-knob.envelope-knob
+          .fl-envelope__label #{envelopeKnobs[i]}
+    .fl-envelope__tension
+      - var tensionKnobs = ['att','dec','rel'];
+      - for (var i=0; i<tensionKnobs.length; i++)
+        .fl-envelope__label #{i===0?'':'tension'}
+        div(class='fl-demo-knob tension-knob '+tensionKnobs[i])
